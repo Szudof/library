@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html>
+
+    <head>
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>Library</title>
+ 
+    
+
+    </head>
+
+    <header>
+        <div style="text-align: center;">
+             <h1 style="text-align:center; display: inline;">Library</h1>
+            <img src="pics/bookicon4.png "  style="display: inline; width: 80px; height: 80px; margin-top: 10px;" alt="Library logo" 
+            >
+        </div>
+    </header>
+
+    <body>
+        <div id = popUpBackground></div>
+
+
+        <div id = bookContainer>
+            <div id = addBookButton>+</div>       
+        </div>
+
+        
+        <form id="popUp">
+            <P>
+                <input type="text" placeholder="Title" id="title" style="margin-bottom: 5px" name="title">
+            </P>
+            <P>
+                <input type="text" placeholder="Author" id="author" style="margin-bottom: 5px"  name="author">
+            </P>
+            <p>
+                <input type="text" placeholder="Pages" id="pages" style="margin-bottom: 5px"  name="pages">
+            </p>
+
+            <input type="radio" id="read" name="status" value="read">
+            <label for="male">Read</label><br>
+            <input type="radio" id="notread" name="status" value="notread">
+            <label for="female">Not read</label><br>
+
+            <input type="button" id = "submitForm" value="Submit">
+        </form>
+        
+        
+
+
+
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
