@@ -1,11 +1,13 @@
 let myLibrary = [];
+let bookCount = 0;
   
   
-function Book(title,author,pages,read){
+function Book(title,author,pages,read, index){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.index = index;
 
 }
 
@@ -14,34 +16,45 @@ function openPopUpButton(){
     const addBookButton = document.querySelector("#addBookButton");
     let poppedUp = false;
 
+    const popUp = document.querySelector("#popUp");
+    const exitBtn = document.createElement('div');
+    const popUpBackground = document.querySelector("#popUpBackground");
+    exitBtn.id = "exitPopUp";
+    exitBtn.textContent = "X";
+    popUp.appendChild(exitBtn);
+
     addBookButton.addEventListener("click", ()=>{
+            
+       popUpBackground.style.display = "block";
+       popUp.style.display = "block";
+            
+       poppedUp = true;
         
-        if(poppedUp === false){
-            document.querySelector("#popUpBackground").style.display = "block";
-            document.querySelector("#popUp").style.display = "block";
-            
-            
-            poppedUp = true;
-        }
-        else{
-            document.querySelector("#popUp").style.display = "none";
-            poppedUp = false;
-        }
     })
+
+    exitBtn.addEventListener("click", ()=>{
+        
+        popUpBackground.style.display = "none";
+        popUp.style.display = "none";
+        
+        poppedUp = false;
+    })
+
+
 
 }
 
-function formSubmitButton(){
+function addNewBook(){
 
     const form = document.querySelector("#submitForm");
 
     form.addEventListener("click", ()=>{
         
-        const newBook = new Book(document.querySelector("#title").value,document.querySelector("#author").value,document.querySelector("#pages").value, "not read yet");
+        const newBook = new Book(document.querySelector("#title").value,document.querySelector("#author").value,document.querySelector("#pages").value, "not read yet", bookCount);
+
+        bookCount++;
 
         myLibrary.push(newBook);
-
-        console.log(myLibrary.length);
 
         refresh();
     
@@ -54,9 +67,6 @@ function changeReadStatus(){
 
 }
 
-function deleteBook(){
-
-}
 
 function refresh(){
 
@@ -66,29 +76,69 @@ function refresh(){
     //usuwa wszystkie divy z bookcontainera po czym wyswietla wszystkie ksiazki (displayLibrary())
 }
 
+function deleteBook(){
+    const deleteBookBtn = document.querySelector(".deleteBook");
+
+    deleteBookBtn.addEventListener("click", ()=>{
+        myLibrary.splice(0,1);
+
+        refresh();
+    })
+
+    
+}
+
+function bookScheme(index){
+
+    
+    
+    const deleteBtnContainer = document.createElement('div');
+    deleteBtnContainer.classList.add("deleteBook");
+    var img = new Image();
+    img.src = "pics/trash.png"
+    img.width = "35";
+    img.height = "35";
+    deleteBtnContainer.appendChild(img);
+
+    
+
+
+    const title = document.createElement('h2');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
+   
+   
+
+
+    const content = document.createElement('div');
+    content.classList.add('book');
+
+    
+    
+
+    title.textContent = myLibrary[index].title;
+    author.textContent = myLibrary[index].author;
+    pages.textContent = myLibrary[index].pages;
+
+    content.appendChild(deleteBtnContainer);
+    content.appendChild(title);
+    content.appendChild(author);
+    content.appendChild(pages);
+
+    
+
+    return content;
+}
+
+
 function displayLibrary(){
 
     const bookContainer = document.querySelector("#bookContainer");
     
     for(let i = 0; i<myLibrary.length; i++)
     {
-        const title = document.createElement('h2');
-        const author = document.createElement('p');
-        const pages = document.createElement('p');
-
-        const content = document.createElement('div');
-        content.classList.add('book');
-
-
-        title.textContent = myLibrary[i].title;
-        author.textContent = myLibrary[i].author;
-        pages.textContent = myLibrary[i].pages;
-
-        content.appendChild(title);
-        content.appendChild(author);
-        content.appendChild(pages);
-
-        bookContainer.appendChild(content);
+        bookContainer.appendChild(bookScheme(i));
+        deleteBook(); //no tera to to wszystjue na strzala wypierdala
     }
 }
 
@@ -104,7 +154,8 @@ console.log(Hobbit.info());
 
 
 openPopUpButton();
-formSubmitButton();
+addNewBook();
 refresh();
+
 
 

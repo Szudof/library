@@ -44,6 +44,33 @@ header{
     z-index: 2;
 }
 
+.deleteBook{
+    position: absolute;
+    bottom: -4px;
+}
+
+#exitPopUp{
+    position: absolute;
+    bottom: 216px;
+    left: 287px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 18px;
+    width: 18px;
+    background-color: red;
+    border: solid black 2px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    
+}
+#exitPopUp:hover{
+    background-color: rgb(255, 112, 112);
+}
+
 
 #popUpBackground{
     
@@ -70,9 +97,9 @@ header{
     
 }
 #addBookButton{
-
+    position: relative;
     text-align: center;
-    cursor: default;
+    cursor: pointer;
     font: 70px bold;
     width: 200px;
     height: 200px;
@@ -86,12 +113,14 @@ header{
 }
 
 .book{
-
+    
+    position: relative;
     text-align: center;
     cursor: default;
     width: 200px;
     height: 200px;
     border: solid black;
+    border-radius: 11%;
     border-width: 3px;
     margin: 4px;
     
