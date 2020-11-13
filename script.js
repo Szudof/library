@@ -2,6 +2,8 @@ let myLibrary = [];
 let bookCount = 0;
   
   
+
+
 function Book(title,author,pages,read, index){
     this.title = title;
     this.author = author;
@@ -57,6 +59,8 @@ function addNewBook(){
         myLibrary.push(newBook);
 
         refresh();
+
+        //deleteBook();
     
     })
     
@@ -71,21 +75,21 @@ function changeReadStatus(){
 function refresh(){
 
     document.querySelectorAll('.book').forEach(e => e.remove());
-
     displayLibrary();
-    //usuwa wszystkie divy z bookcontainera po czym wyswietla wszystkie ksiazki (displayLibrary())
+    deleteBook();                  
 }
 
 function deleteBook(){
-    const deleteBookBtn = document.querySelector(".deleteBook");
-
-    deleteBookBtn.addEventListener("click", ()=>{
-        myLibrary.splice(0,1);
-
-        refresh();
-    })
-
     
+    const deleteBookBtn = document.getElementsByClassName("deleteBook");
+
+    for(let i = 0; i<deleteBookBtn.length; i++)
+    {    
+        deleteBookBtn[i].addEventListener("click", ()=>{
+            myLibrary.splice(i,1);
+            refresh();                                                                                                                           //wszystkie divy sa usuwane i ponownie dodawane wiec event listenery znikaja na delete button
+        }) 
+    }
 }
 
 function bookScheme(index){
@@ -99,6 +103,11 @@ function bookScheme(index){
     img.width = "35";
     img.height = "35";
     deleteBtnContainer.appendChild(img);
+
+    const statusBtn = document.createElement('div');
+    statusBtn.classList.add("statusBtn");
+
+
 
     
 
@@ -121,6 +130,7 @@ function bookScheme(index){
     pages.textContent = myLibrary[index].pages;
 
     content.appendChild(deleteBtnContainer);
+    content.appendChild(statusBtn);
     content.appendChild(title);
     content.appendChild(author);
     content.appendChild(pages);
@@ -138,7 +148,7 @@ function displayLibrary(){
     for(let i = 0; i<myLibrary.length; i++)
     {
         bookContainer.appendChild(bookScheme(i));
-        deleteBook(); //no tera to to wszystjue na strzala wypierdala
+        //deleteBook(); //no tera to to wszystjue na strzala wypierdala
     }
 }
 
