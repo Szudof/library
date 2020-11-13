@@ -21,12 +21,39 @@ header{
     
     
 
-}   
+}
+
+
 
 @keyframes showUp{
     0% {background-color: white; bottom: 1000px; transform: scale(1);}
     100%{background-color: rgb(233, 186, 33); bottom: 0px; transform: scale(1);}
     
+}
+
+@keyframes onDelete{
+    0%{transform: scale(1);}
+    50%{transform: scale(1.5);}
+    100%{transform: scale(1);}
+}
+
+.statusBtn{
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background-color: rgb(0, 128, 0);
+    bottom: 4px;
+    left: 107px;
+    border-radius: 8px;
+    border: solid 1px black;
+
+
+}
+
+.statusBtn:hover{
+    background-color:  rgb(0, 160, 0);
+    cursor: pointer;
+
 }
 
 #popUp{
@@ -47,6 +74,13 @@ header{
 .deleteBook{
     position: absolute;
     bottom: -4px;
+    border-radius: 50%;
+}
+
+.deleteBook:hover{
+    animation-name: onDelete;
+    animation-duration: 1s;
+    cursor: pointer;
 }
 
 #exitPopUp{
