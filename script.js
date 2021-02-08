@@ -87,7 +87,7 @@ function deleteBook(){
     {    
         deleteBookBtn[i].addEventListener("click", ()=>{
             myLibrary.splice(i,1);
-            refresh();                                                                                                                           //wszystkie divy sa usuwane i ponownie dodawane wiec event listenery znikaja na delete button
+            refresh();                                                                                                                          
         }) 
     }
 }
@@ -148,7 +148,7 @@ function displayLibrary(){
     for(let i = 0; i<myLibrary.length; i++)
     {
         bookContainer.appendChild(bookScheme(i));
-        //deleteBook(); //no tera to to wszystjue na strzala wypierdala
+        
     }
 }
 
